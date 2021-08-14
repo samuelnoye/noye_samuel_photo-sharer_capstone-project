@@ -142,9 +142,9 @@ h6,
 .testimonial-wrap {
     padding: 50px 50px 80px 50px;
     background: #eceff2;
-}RF
+}
 
-.testimonial-wrap .testimonial {
+RF .testimonial-wrap .testimonial {
     text-align: center;
     max-width: 500px;
     margin: 0 auto;

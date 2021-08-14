@@ -16,6 +16,12 @@ router.get('/', ensureAuthenticated, (req, res) => {
 
 //  
 
+router.get('/login1', ensureAuthenticated, (req, res) => {
 
+
+    res.render('login1', {
+        name: req.user.name
+    })
+});
 
 module.exports = router;

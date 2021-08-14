@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Photo Sharer.</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+            <div class="collapse navbar-collapse" id="navbarColor01">
+                <ul class="navbar-nav me-auto">
+
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">
+                            <span class="visually-hidden">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">
+                            <span class="visually-hidden">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">
+                            <span class="visually-hidden">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">
+                            <span class="visually-hidden">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Home
+                  <span class="visually-hidden">(current)</span>
+                </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="signup">Sign Up</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="login">Log In</a>
+                    </li>
+
+
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+
+
+
+
+    <form action="login" style="margin-top: 10%;" method="post" role="form" class="col-lg-6 offset-lg-3 ">
+        <div class="row justify-content-center">
+
+            <div class="col-md-8 form-group">
+                <%- include ('partials/messages') %>
+
+
+            </div>
+
+
+            <div class="col-md-8 form-group">
+                <label for="name">Email</label>
+
+                <input type="text" class="form-control" name="email" id="email" required>
+            </div>
+            <br>
+            <div class="col-md-12 my-3">
+                <div class="loading"></div>
+                <div class="error-message"></div>
+                <div class="sent-message"></div>
+            </div>
+            <div class="col-md-8 form-group">
+                <label for="password">Password</label>
+
+                <input type="password" name="password" class="form-control" id="password" required>
+            </div>
+
+
+            <div class="col-md-8 my-3">
+                <div class="loading"></div>
+                <div class="error-message"></div>
+                <div class="sent-message"></div>
+            </div>
+
+            <div class="col-md-8 mt-2 form-group">
+                <input type="submit" class="readmore d-block w-100" value="Log In">
+            </div>
+            <br>
+            <p style="margin-top: 5%; text-align: center;">Don't have an acoount? <a href=" signup "> Register here</a></p>
+
+        </div>
+    </form>
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-sm-8 social text-md-end">
+                    <a href="#"><span class="bi bi-twitter"></span></a>
+                    <a href="#"><span class="bi bi-facebook"></span></a>
+                    <a href="#"><span class="bi bi-instagram"></span></a>
+                    <a href="#"><span class="bi bi-linkedin"></span></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+
+
+</body>
+
+</html>
