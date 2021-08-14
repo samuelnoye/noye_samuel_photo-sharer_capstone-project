@@ -14,6 +14,16 @@ router.get('/dash', (req, res) => {
 
 //Get a 
 
+router.get('/upload', (req, res) => {
 
+
+    res.render('admin/upload')
+});
+
+router.get('/users', (req, res) => {
+
+
+    res.render('admin/users')
+});
 
 module.exports = router;
