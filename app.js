@@ -8,17 +8,20 @@ const flash = require('express-flash');
 const conflash = require('connect-flash');
 const passport = require('passport');
 const expressLayouts = require('express-ejs-layouts');
-//const ejsLint = require('ejs-lint');
 
-//database
+
+//import database
 const {
     pool
-} = require('./config/configDB')
+} = require('./config/configDB');
+
+//passport config
+require('./config/passportConfig');
 
 
 //start express
 const app = express();
-//app.use(helmet());
+
 
 
 
@@ -30,6 +33,10 @@ app.use(session({
 
 }))
 
+//passport middleware
+app.use(passport.initialize());
+app.use(passport.session())
+
 //connect flash
 app.use(flash())
 
@@ -37,10 +44,11 @@ app.use(flash())
 app.use((req, res, next) => {
     res.locals.success_msg = req.flash('success_msg');
     res.locals.error_msg = req.flash('error_msg')
+    res.locals.error = req.flash('error')
     next();
 });
 
-// middlewares
+//express.json middlewares
 app.search(express.json());
 
 //bodyparser
@@ -59,19 +67,22 @@ app.use('/js', express.static(__dirname + 'public/js'));
 app.use('/img', express.static(__dirname + 'public/img'));
 app.use('/vendor', express.static(__dirname + 'public/vendor'));
 
-//test database
+
 
 
 
 // Index routes
 app.use('/', require('./routes/index'));
 
-
 //users routes
 app.use('/users', require('./routes/users'));
 
 //main routes
 app.use('/main', require('./routes/main'));
+
+//main routes
+app.use('/admin', require('./routes/admin'));
+
 
 
 

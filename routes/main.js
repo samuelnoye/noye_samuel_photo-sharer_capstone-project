@@ -1,18 +1,20 @@
 const express = require('express')
 const router = express.Router();
+const { ensureAuthenticated } = require('../config/auth')
 
 
 
 
+//Welcome page
+router.get('/', ensureAuthenticated, (req, res) => {
 
-//Get all photos
-router.get('/', (req, res) => {
 
-
-    res.render('main')
+    res.render('main', {
+        name: req.user.name
+    })
 });
 
-//Get a 
+//  
 
 
 

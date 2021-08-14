@@ -115,11 +115,56 @@ router.post('/signup', async(req, res) => {
 
 });
 
-router.post('/login', passport.authenticate('local', {
-    successRedirect: '/main',
-    failureRedirect: './'
-}))
 
 
+
+
+//authenticate user then redirect
+// router.post('/login', (req, res, next) => {
+//     passport.authenticate('local', {
+//         successRedirect: '/main',
+//         failureRedirect: '/users/login',
+//         failureFlash: true
+//     })(req, res, next);
+// })
+
+router.post('/login', (req, res, next) => {
+
+
+    if (req.user.role === 'admin') {
+
+        passport.authenticate('local', {
+            successRedirect: '/admin/dash',
+            failureRedirect: '/users/login',
+            failureFlash: true
+        })(req, res, next);
+
+
+    } else {
+        passport.authenticate('local', {
+            successRedirect: '/main',
+            failureRedirect: '/users/login',
+            failureFlash: true
+        })(req, res, next);
+
+
+    }
+
+
+
+})
+
+
+
+
+
+
+
+
+router.get('/logout', (req, res) => {
+    req.logout();
+    req.flash('success_msg', 'You are logged out ');
+    res.redirect('/users/login')
+})
 
 module.exports = router;
