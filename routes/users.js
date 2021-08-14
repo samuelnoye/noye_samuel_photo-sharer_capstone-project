@@ -87,7 +87,8 @@ router.post('/signup', async(req, res) => {
             console.log(result.rows)
             if (result.rows.length > 0) {
                 errors.push({ message: 'Email already registered' })
-                res.render('/signup', { errors })
+                res.render('signup', { errors })
+
             } else {
 
                 //insert into database
@@ -120,39 +121,36 @@ router.post('/signup', async(req, res) => {
 
 
 //authenticate user then redirect
-// router.post('/login', (req, res, next) => {
-//     passport.authenticate('local', {
-//         successRedirect: '/main',
-//         failureRedirect: '/users/login',
-//         failureFlash: true
-//     })(req, res, next);
-// })
-
 router.post('/login', (req, res, next) => {
-
-
-    if (req.user.role === 'admin') {
-
-        passport.authenticate('local', {
-            successRedirect: '/admin/dash',
-            failureRedirect: '/users/login',
-            failureFlash: true
-        })(req, res, next);
-
-
-    } else {
-        passport.authenticate('local', {
-            successRedirect: '/main',
-            failureRedirect: '/users/login',
-            failureFlash: true
-        })(req, res, next);
-
-
-    }
-
-
-
+    passport.authenticate('local', {
+        successRedirect: '/main',
+        failureRedirect: '/users/login',
+        failureFlash: true
+    })(req, res, next);
 })
+
+// router.post('/login', (req, res, next) => {
+
+
+//     if (req.user.role === 'admin') {
+
+//         passport.authenticate('local', {
+//             successRedirect: '/admin/dash',
+//             failureRedirect: '/users/login',
+//             failureFlash: true
+//         })(req, res, next);
+
+
+//     } else {
+//         passport.authenticate('local', {
+//             successRedirect: '/main',
+//             failureRedirect: '/users/login',
+//             failureFlash: true
+//         })(req, res, next);
+
+//     }
+
+// })
 
 
 
