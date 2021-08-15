@@ -5,6 +5,7 @@ const { pool } = require('../config/configDB')
 const session = require('express-session');
 const flash = require('express-flash');
 const passport = require('passport');
+const { ensureAuthenticated } = require('../config/auth')
 
 
 const initializePassport = require('../config/passportConfig')
@@ -30,15 +31,13 @@ router.get('/signup', (req, res) => {
     res.render('signup')
 });
 
+
+
+
+
 router.get('/login', (req, res) => {
 
-    // Users.findAll().then(users => {
-    //         console.log(users)
-    //res.sendStatus(200)
-    //     })
-    //     .catch(err => console.log(err))
-
-    res.render('login1')
+    res.render('login')
 });
 
 //Creating a new user
@@ -121,36 +120,33 @@ router.post('/signup', async(req, res) => {
 
 
 //authenticate user then redirect
-router.post('/login', (req, res, next) => {
-    passport.authenticate('local', {
-        successRedirect: '/main',
-        failureRedirect: '/users/login',
-        failureFlash: true
-    })(req, res, next);
-})
 
 // router.post('/login', (req, res, next) => {
-
-
-//     if (req.user.role === 'admin') {
-
-//         passport.authenticate('local', {
-//             successRedirect: '/admin/dash',
-//             failureRedirect: '/users/login',
-//             failureFlash: true
-//         })(req, res, next);
-
-
-//     } else {
-//         passport.authenticate('local', {
-//             successRedirect: '/main',
-//             failureRedirect: '/users/login',
-//             failureFlash: true
-//         })(req, res, next);
-
-//     }
-
+//     passport.authenticate('local', {
+//         successRedirect: '/main',
+//         failureRedirect: '/users/login',
+//         failureFlash: true
+//     })(req, res, next);
 // })
+
+
+router.post('/login', passport.authenticate('local'), async(req, res) => {
+
+    const { email } = req.body
+    let user = await pool.query(`SELECT * FROM users WHERE email = $1`, [email]);
+    try {
+
+        if (user.rows[0].role === 'admin') {
+            return res.redirect('admin')
+        }
+        return res.redirect('/main')
+    } catch (err) {
+        console.log(err)
+            //console.error(err.message);
+    }
+})
+
+
 
 
 

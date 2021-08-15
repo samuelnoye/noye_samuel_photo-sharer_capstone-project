@@ -1,0 +1,23 @@
+// router.post('/login', (req, res, next) => {
+
+
+//     if (req.user.role === 'admin') {
+
+//         passport.authenticate('local', {
+//             successRedirect: '/admin/dash',
+//             failureRedirect: '/users/login',
+//             failureFlash: true
+//         })(req, res, next);
+
+
+//     } else {
+//         passport.authenticate('local', {
+//             successRedirect: '/main',
+//             failureRedirect: '/users/login',
+//             failureFlash: true
+//         })(req, res, next);
+
+//     }
+
+// })
+

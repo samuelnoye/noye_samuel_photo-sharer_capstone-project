@@ -16,10 +16,20 @@ router.get('/', ensureAuthenticated, (req, res) => {
 
 //  
 
+router.get('/work-single', ensureAuthenticated, (req, res) => {
+
+
+    res.render('work-single', {
+        name: req.user.name
+    })
+});
+
+
+
 router.get('/login', ensureAuthenticated, (req, res) => {
 
 
-    res.render('login1', {
+    res.render('login', {
         name: req.user.name
     })
 });

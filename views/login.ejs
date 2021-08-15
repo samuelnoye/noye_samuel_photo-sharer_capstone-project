@@ -2,119 +2,113 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
-    <title>Log In</title>
-    <meta content="" name="description">
-    <meta content="" name="keywords">
-
-    <!-- Favicons -->
-    <link href="img/favicon.png" rel="icon">
-    <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
-
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=https://fonts.googleapis.com/css?family=Inconsolata:400,500,600,700|Raleway:400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-
-
-
-    <!-- Template Main CSS File -->
-    <link href="css/style.css" rel="stylesheet">
-
-
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 </head>
 
 <body>
-    <div class="collapse navbar-collapse custom-navmenu" id="main-navbar">
-        <div class="container py-2 py-md-5">
-            <div class="row align-items-start">
-                <div class="col-md-2">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">-Photo Sharer.</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
 
-                    <ul class="custom-menu">
+            <div class="collapse navbar-collapse" id="navbarColor01">
+                <ul class="navbar-nav me-auto">
 
-                        <li class="active"><a href="signup">Sign Up</a></li>
-                        <li><a href="./">Log In</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">
+                            <span class="visually-hidden">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">
+                            <span class="visually-hidden">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">
+                            <span class="visually-hidden">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">
+                            <span class="visually-hidden">(current)</span>
+                        </a>
+                    </li>
 
 
-                    </ul>
-                </div>
+
+
+
+                    <li class="nav-item">
+                        <a class="nav-link m-auto" href="signup">Sign Up </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link m-auto" href="signup">| </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="login">Log In</a>
+                    </li>
+
+
+                </ul>
 
             </div>
-
-        </div>
-    </div>
-
-
-    <nav class="navbar navbar-light custom-navbar">
-        <div class="container">
-            <a class="navbar-brand" href="#">Photo Sharer.</a>
-            <a href="#" class="burger" data-bs-toggle="collapse" data-bs-target="#main-navbar">
-                <span></span>
-            </a>
         </div>
     </nav>
 
-    <main id="main">
-
-        <section class="section pb-5">
-            <div class="container">
 
 
-                <div class="row">
-                    <div class="col-md-6 mb-5 mb-md-0" data-aos="fade-up">
-                        <%- include ('partials/messages') %>
 
-                            <form action="login" method="post" role="form">
+    <form action="login" style="margin-top: 10%;" method="post" role="form" class="col-lg-6 offset-lg-3 ">
+        <div class="row justify-content-center">
 
-                                <div class="row gy-3">
+            <div class="col-md-8 form-group">
+                <%- include ('partials/messages') %>
 
-                                    <div class="col-md-12 form-group">
-                                        <label for="name">Email</label>
-                                        <input type="text" class="form-control" name="email" id="email" required>
-                                    </div>
-                                    <div class="col-md-12 form-group">
-                                        <label for="password">Password</label>
-                                        <input type="password" name="password" class="form-control" id="password" required>
-                                    </div>
-
-                                    <div class="col-md-12 my-3">
-                                        <div class="loading"></div>
-                                        <div class="error-message"></div>
-                                        <div class="sent-message"></div>
-                                    </div>
-
-                                    <div class="col-md-6 mt-0 form-group">
-                                        <input type="submit" class="readmore d-block w-100" value="Log In">
-                                    </div>
-                                    <p>Don't have an acoount? <a href="signup"> Register here</a></p>
-                                </div>
-
-                            </form>
-
-                    </div>
-
-                </div>
 
             </div>
 
-        </section>
 
-    </main>
-    <!-- End #main -->
+            <div class="col-md-8 form-group">
+                <label for="name">Email</label>
+
+                <input type="text" class="form-control" name="email" id="email" required>
+            </div>
+            <br>
+            <div class="col-md-12 my-3">
+                <div class="loading"></div>
+                <div class="error-message"></div>
+                <div class="sent-message"></div>
+            </div>
+            <div class="col-md-8 form-group">
+                <label for="password">Password</label>
+
+                <input type="password" name="password" class="form-control" id="password" required>
+            </div>
+
+
+            <div class="col-md-8 my-3">
+                <div class="loading"></div>
+                <div class="error-message"></div>
+                <div class="sent-message"></div>
+            </div>
+
+            <div class="col-md-8 mt-2 form-group">
+                <input type="submit" class="readmore d-block w-100" value="Log In">
+            </div>
+            <br>
+            <p style="margin-top: 5%; text-align: center;">Don't have an acoount? <a href=" signup "> Register here</a></p>
+
+        </div>
+    </form>
 
 
 
-
-
-    <!-- Vendor JS Files -->
-    <script src="vendor/aos/aos.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="vendor/isotope-layout/isotope.pkgd.min.js"></script>
-    <script src="vendor/php-email-form/validate.js"></script>
-    <script src="vendor/swiper/swiper-bundle.min.js"></script>
-
-    <!-- Template Main JS File -->
-    <script src="js/main.js"></script>
 
 </body>
 
