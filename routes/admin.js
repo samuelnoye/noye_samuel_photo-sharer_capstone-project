@@ -7,13 +7,23 @@ const { pool } = require('../config/configDB')
 const session = require('express-session');
 const flash = require('express-flash');
 const passport = require('passport');
+const bodyParser = require('body-parser');
+const cors = require('cors')
 
+
+router.use(flash());
+router.use(express.json());
+router.use(cors())
+
+
+
+// middlewares
+router.use(express.urlencoded({ extended: true }));
 
 
 router.use(flash());
 
-// middlewares
-router.use(express.urlencoded({ extended: false }));
+
 
 
 // Set The Storage Engine
@@ -31,7 +41,7 @@ const upload = multer({
     fileFilter: function(req, file, cb) {
         checkFileType(file, cb);
     }
-}).single('myImage');
+})
 
 // Check File Type
 function checkFileType(file, cb) {
@@ -50,6 +60,10 @@ function checkFileType(file, cb) {
 }
 
 
+
+
+
+
 //Get all photos
 router.get('/dash', (req, res) => {
 
@@ -64,58 +78,56 @@ router.get('/upload', (req, res) => {
 
 });
 
-router.post('/upload', async(req, res) => {
-
-    upload(req, res, (err) => {
-        if (err) {
-            res.render('admin/upload', {
-                msg: err
-            });
-        } else {
-            if (req.file == undefined) {
-                res.render('admin/upload', {
-                    msg: 'Error: No Picture Selected!'
-                });
-            } else {
-                console.log(req.file)
-                res.render('admin/upload', {
-                    msg: 'Picture Uploaded Succesfully!',
-                    file: `uploads/${req.file.filename}`
-
-                });
-            }
-        }
-    });
+router.post('/upload', upload.single('myImage'), async(req, res) => {
 
 
 
-    let { title, description, file } = req.body;
+    if (req.file == undefined) {
+        res.render('admin/upload', {
+            msg: 'Error: No Picture Selected!'
+        });
+    } else {
+        console.log(req.file)
+
+        res.render('admin/upload', {
+            msg: 'Picture Uploaded Succesfully!',
+            file: `uploads/${req.file.filename}`
+
+        });
+    }
+
+    let { title, description } = req.body;
     console.log({
         title,
-        description,
-        file
+        description
     });
 
+
+
+    const imgFile = req.file.path
     let errors = [];
 
 
 
     //insert into database
 
-
     pool.query(
         `INSERT INTO picture (title, description, img)
-                    VALUES($1,$2,$3) RETURNING id, img`, [title, description, file], (err, results) => {
+                        VALUES($1,$2,$3) RETURNING *`, [title, description, imgFile], (err, results) => {
             if (err) {
                 throw err
             }
-            console.log(results.row)
-                //alertM('You are now registered. You can now log in');
-            req.flash('success_msg', 'You are now registered. You can now log in')
-            res.redirect('/users/login')
+            // console.log(results.row)
+            //req.flash('success_msg', 'You are now registered. You can now log in')
+            //res.redirect('/users/login')
         }
 
     )
+
+
+
+
+
 })
 
 router.get('/users', (req, res) => {
@@ -124,4 +136,5 @@ router.get('/users', (req, res) => {
     res.render('admin/users')
 });
 
+module.exports = router;
 module.exports = router;
