@@ -4,6 +4,7 @@ const router = express.Router();
 const multer = require('multer');
 const path = require('path');
 const { pool } = require('../config/configDB')
+const { ensureAuthenticated } = require('../config/auth')
 const session = require('express-session');
 const flash = require('express-flash');
 const passport = require('passport');
@@ -11,13 +12,11 @@ const bodyParser = require('body-parser');
 const cors = require('cors')
 
 
+//middlewares
 router.use(flash());
 router.use(express.json());
 router.use(cors())
 
-
-
-// middlewares
 router.use(express.urlencoded({ extended: true }));
 
 
@@ -64,21 +63,25 @@ function checkFileType(file, cb) {
 
 
 
-//Get all photos
-router.get('/dash', (req, res) => {
+//admin dashboard
+router.get('/dash', ensureAuthenticated, (req, res) => {
 
 
     res.render('admin/dash')
 });
 
-//Get a 
-
+//upload page 
 router.get('/upload', (req, res) => {
     res.render('admin/upload')
 
 });
 
+
+// upload and save picture with detials to data
 router.post('/upload', upload.single('myImage'), async(req, res) => {
+
+
+
 
 
 
@@ -90,11 +93,12 @@ router.post('/upload', upload.single('myImage'), async(req, res) => {
         console.log(req.file)
 
         res.render('admin/upload', {
-            msg: 'Picture Uploaded Succesfully!',
+            msg: 'Picture Uploaded Succesfully with Details!',
             file: `uploads/${req.file.filename}`
 
         });
     }
+
 
     let { title, description } = req.body;
     console.log({
@@ -113,13 +117,13 @@ router.post('/upload', upload.single('myImage'), async(req, res) => {
 
     pool.query(
         `INSERT INTO picture (title, description, img)
-                        VALUES($1,$2,$3) RETURNING *`, [title, description, imgFile], (err, results) => {
+                        VALUES($1,$2,$3) RETURNING *`, [title, description, imgFile.replace("public\\img\\", "/img/")], (err, results) => {
+
+
             if (err) {
                 throw err
             }
-            // console.log(results.row)
-            //req.flash('success_msg', 'You are now registered. You can now log in')
-            //res.redirect('/users/login')
+
         }
 
     )
@@ -130,11 +134,25 @@ router.post('/upload', upload.single('myImage'), async(req, res) => {
 
 })
 
+//users page
 router.get('/users', (req, res) => {
 
+    pool.query(`SELECT * FROM users`, (err, result) => {
+        if (err) {
+            console.log(err.message)
+        }
+        console.log(result.rows)
 
-    res.render('admin/users')
+        const picture = result.rows
+        res.render('admin/users', {
+            userData: picture
+        })
+        res.json(result.rows)
+    });
+    // res.render('admin/users')
 });
 
+module.exports = router;
+module.exports = router;
 module.exports = router;
 module.exports = router;

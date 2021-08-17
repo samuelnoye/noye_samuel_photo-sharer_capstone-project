@@ -21,6 +21,8 @@ router.use(passport.session())
 
 router.use(flash());
 
+//express.json middlewares
+router.use(express.json());
 
 
 //Get all users
@@ -93,12 +95,12 @@ router.post('/signup', async(req, res) => {
                 //insert into database
                 pool.query(
                     `INSERT INTO users (name, email, password, role)
-                    VALUES($1,$2,$3,$4) RETURNING id, password`, [name, email, hashPassword, 'user'], (err, results) => {
+                    VALUES($1,$2,$3,$4) RETURNING id, password`, [name, email, hashPassword, 'admin'], (err, results) => {
                         if (err) {
                             throw err
                         }
                         console.log(results.row)
-                            //alertM('You are now registered. You can now log in');
+                            //res.json(results.row)
                         req.flash('success_msg', 'You are now registered. You can now log in')
                         res.redirect('/users/login')
                     }
@@ -121,35 +123,37 @@ router.post('/signup', async(req, res) => {
 
 //authenticate user then redirect
 
-// router.post('/login', (req, res, next) => {
-//     passport.authenticate('local', {
-//         successRedirect: '/main',
-//         failureRedirect: '/users/login',
-//         failureFlash: true
-//     })(req, res, next);
-// })
-
-
-router.post('/login', passport.authenticate('local'), async(req, res) => {
-
-    const { email } = req.body
-    let user = await pool.query(`SELECT * FROM users WHERE email = $1`, [email]);
-    try {
-
-        if (user.rows[0].role === 'admin') {
-            return res.redirect('admin')
-        }
-        return res.redirect('/main')
-    } catch (err) {
-        console.log(err)
-            //console.error(err.message);
-    }
+router.post('/login', (req, res, next) => {
+    passport.authenticate('local', {
+        successRedirect: '/main',
+        failureRedirect: '/users/login',
+        failureFlash: true
+    })(req, res, next);
 })
 
 
+// router.post('/login', passport.authenticate('local'), async(req, res) => {
 
+//     const { email } = req.body
 
+//     let errors = []
+//     let user = await pool.query(`SELECT * FROM users WHERE email = $1`, [email]);
+//     try {
+//         console.log(user.rows[0].role)
+//         if (user.rows[0].role === 'user') {
+//             return res.redirect('/main')
+//         } else if (user.rows[0].role === 'admin') {
 
+//             return res.render('admin/dash')
+//         } else {
+//             res.redirect('/users/login', { message })
+//         }
+//     } catch (err) {
+//         console.log(err)
+
+//         errors.push({ err: 'Unathorized' })
+//     }
+// })
 
 
 

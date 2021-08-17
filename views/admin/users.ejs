@@ -65,12 +65,40 @@
                 </tr>
             </thead>
             <tbody>
-                <tr class="table-light">
-                    <th scope="row">1</th>
-                    <td>Samuel Noye</td>
-                    <td>samuelnoye@gmail.com</td>
-                    <td>admin</td>
-                </tr>
+
+
+                <%if(userData.length!=0){%>
+                    <%   var i=1; %>
+                        <%   userData.forEach(data =>{ %>
+
+
+                            <tr class="table-light">
+                                <th scope="row">
+                                    <%=i; %>
+                                </th>
+                                <td>
+                                    <%=data.name %>
+                                </td>
+                                <td>
+                                    <%=data.email %>
+                                </td>
+                                <td>
+                                    <%=data.role %>
+                                </td>
+                            </tr>
+                            <%  i++; }) %>
+                                <% } else{ %>
+                                    <tr>
+                                        <td colspan="7">No Data Found</td>
+                                    </tr>
+                                    <% } %>
+
+
+
+
+
+
+
             </tbody>
         </table>
 

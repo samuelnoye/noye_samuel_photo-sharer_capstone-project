@@ -13,7 +13,7 @@ initializePassport(passport)
 // middlewares
 router.use(express.urlencoded({ extended: false }));
 
-
+router.use(express.json());
 
 
 
