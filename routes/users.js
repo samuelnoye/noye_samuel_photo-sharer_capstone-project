@@ -123,37 +123,37 @@ router.post('/signup', async(req, res) => {
 
 //authenticate user then redirect
 
-router.post('/login', (req, res, next) => {
-    passport.authenticate('local', {
-        successRedirect: '/main',
-        failureRedirect: '/users/login',
-        failureFlash: true
-    })(req, res, next);
-})
-
-
-// router.post('/login', passport.authenticate('local'), async(req, res) => {
-
-//     const { email } = req.body
-
-//     let errors = []
-//     let user = await pool.query(`SELECT * FROM users WHERE email = $1`, [email]);
-//     try {
-//         console.log(user.rows[0].role)
-//         if (user.rows[0].role === 'user') {
-//             return res.redirect('/main')
-//         } else if (user.rows[0].role === 'admin') {
-
-//             return res.render('admin/dash')
-//         } else {
-//             res.redirect('/users/login', { message })
-//         }
-//     } catch (err) {
-//         console.log(err)
-
-//         errors.push({ err: 'Unathorized' })
-//     }
+// router.post('/login', (req, res, next) => {
+//     passport.authenticate('local', {
+//         successRedirect: '/main',
+//         failureRedirect: '/users/login',
+//         failureFlash: true
+//     })(req, res, next);
 // })
+
+
+router.post('/login', passport.authenticate('local'), async(req, res) => {
+
+    const { email } = req.body
+
+    let errors = []
+    let user = await pool.query(`SELECT * FROM users WHERE email = $1`, [email]);
+    try {
+        console.log(user.rows[0].role)
+        if (user.rows[0].role === 'user') {
+            return res.redirect('/main')
+        } else if (user.rows[0].role === 'admin') {
+
+            return res.render('admin/dash')
+        } else {
+            res.redirect('/users/login', { message })
+        }
+    } catch (err) {
+        console.log(err)
+
+        errors.push({ err: 'Unathorized' })
+    }
+})
 
 
 
