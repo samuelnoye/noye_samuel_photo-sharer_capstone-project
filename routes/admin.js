@@ -77,6 +77,7 @@ router.get('/dash', ensureAuthenticated, (req, res) => {
 
         const picture = result.rows
             //const picId = picture.id
+
         res.render('admin/dash', {
             name: req.user.name,
             picData: picture
