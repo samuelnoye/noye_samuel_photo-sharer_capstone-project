@@ -87,9 +87,7 @@ app.use('/admin', require('./routes/admin'));
 
 
 
-
-
-//picture upvote page route
+//picture upvote route
 app.post('/picpage/like/:id', (req, res) => {
 
     // get id
@@ -103,8 +101,8 @@ app.post('/picpage/like/:id', (req, res) => {
         if (err) {
             console.log(err.message)
         }
-        //console.log(result.rows)
 
+        //update vote by 1
         const vote = result.rows[0].up
         console.log(result.rows[0].up)
         pool.query(`UPDATE picture SET up = $1 WHERE id = $2`, [vote + 1, id], (err, result) => {
@@ -112,25 +110,47 @@ app.post('/picpage/like/:id', (req, res) => {
                 console.log(err.message)
             }
 
-            // res.render('picpage', {
-            //     name: req.user.name,
-            //     title: result.rows[0].title,
-            //     description: result.rows[0].description,
-            //     img: result.rows[0].img
-            // })
+        });
+
+    });
+})
+
+//picture downvote route
+app.post('/picpage/unlike/:id', (req, res) => {
+
+    // get id
+    const id = req.params.id
+
+    console.log(req.params.id)
+    console.log(id)
+
+    // fetch pictre likes by the id
+    pool.query(`SELECT down FROM picture WHERE id = $1`, [id], (err, result) => {
+        if (err) {
+            console.log(err.message)
+        }
+
+        //update vote by 1
+        const vote = result.rows[0].down
+        console.log(result.rows[0].down)
+        pool.query(`UPDATE picture SET down = $1 WHERE id = $2`, [vote + 1, id], (err, result) => {
+            if (err) {
+                console.log(err.message)
+            }
+
         });
 
     });
 })
 
 //download picture route
-app.get('/download', ensureAuthenticated, (req, res) => {
+app.get('/picpage/download/:id', ensureAuthenticated, (req, res) => {
     // res.send('checking')
     const id = req.query.id
 
     console.log(req.params.id)
     console.log(id)
-        // check if email is already in the system
+
     pool.query(`SELECT * FROM picture WHERE id = $1`, [id], (err, result) => {
         if (err) {
             console.log(err.message)

@@ -142,8 +142,9 @@
                         <button type="submit" class="btn btn-success fa fa-thumbs-up"><a href="/picpage/like/<%= id%>"></a> vote</a></button>
 
                     </form>
-                    <button type="button" class="btn bg-danger fa fa-thumbs-down ml-auto"><a href="#"></a> vote</a></button>
-
+                    <form action="/picpage/unlike/<%= id%>" method="POST">
+                        <button type="submit" class="btn bg-danger fa fa-thumbs-down ml-auto"><a href="#"></a> vote</a></button>
+                    </form>
 
                     <button type="button" class="btn bg-light fa fa-download">
                         <a href="/download?id=<%= img %>"></a></button>
