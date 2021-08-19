@@ -71,19 +71,58 @@ router.get('/dash', ensureAuthenticated, (req, res) => {
     pool.query(`SELECT * FROM picture`, (err, result) => {
         if (err) {
             console.log(err.message)
-        }
+        };
 
 
-
+        //getting total pictures
         const picture = result.rows
-            //const picId = picture.id
+        pool.query(`SELECT * FROM picture ORDER BY id DESC LIMIT 1`, (err, result) => {
+            if (err) {
+                console.log(err.message)
+            }
 
-        res.render('admin/dash', {
-            name: req.user.name,
-            picData: picture
-        })
+            const pictureCount = result.rows[0].id
+
+
+            //getting total users
+            pool.query(`SELECT * FROM users ORDER BY id DESC LIMIT 1`, (err, result) => {
+                if (err) {
+                    console.log(err.message)
+                }
+                const usersCount = result.rows[0].id
+
+                //getting total up votes
+                pool.query(`SELECT SUM(up) FROM picture;`, (err, result) => {
+                    if (err) {
+                        console.log(err.message)
+                    }
+                    const totalLikes = result.rows[0].sum
+                    console.log(totalLikes)
+
+                    //getting total down votes
+                    pool.query(`SELECT SUM(down) FROM picture;`, (err, result) => {
+                        if (err) {
+                            console.log(err.message)
+                        }
+                        const totalDown = result.rows[0].sum
+                        console.log(totalLikes)
+
+
+                        res.render('admin/dash', {
+                            name: req.user.name,
+                            picData: picture,
+                            picCount: pictureCount,
+                            sumLikes: totalLikes,
+                            sumDown: totalDown,
+                            userCount: usersCount
+                        })
+                    });
+                });
+            });
+        });
     });
 });
+
 
 //upload page 
 router.get('/upload', (req, res) => {
@@ -163,7 +202,4 @@ router.get('/users', (req, res) => {
     // res.render('admin/users')
 });
 
-module.exports = router;
-module.exports = router;
-module.exports = router;
 module.exports = router;
