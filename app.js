@@ -90,7 +90,7 @@ app.use('/admin', require('./routes/admin'));
 
 
 //picture upvote page route
-app.put('/picpage/like/:id', (req, res) => {
+app.post('/picpage/like/:id', (req, res) => {
 
     // get id
     const id = req.params.id
@@ -99,15 +99,15 @@ app.put('/picpage/like/:id', (req, res) => {
     console.log(id)
 
     // fetch pictre likes by the id
-    pool.query(`SELECT like FROM picture WHERE id = $1`, [id], (err, result) => {
+    pool.query(`SELECT up FROM picture WHERE id = $1`, [id], (err, result) => {
         if (err) {
             console.log(err.message)
         }
         //console.log(result.rows)
 
-        const vote = result.rows[0].like
-        console.log(result.rows[0].like)
-        pool.query(`UPDATE picture SET like = $1 WHERE id = $2`, [vote + 1, id], (err, result) => {
+        const vote = result.rows[0].up
+        console.log(result.rows[0].up)
+        pool.query(`UPDATE picture SET up = $1 WHERE id = $2`, [vote + 1, id], (err, result) => {
             if (err) {
                 console.log(err.message)
             }
