@@ -83,14 +83,13 @@
                         <a class="nav-link" href="#"></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="#">Home
+                        <a class="nav-link active" href="/main">Home
                   <span class="visually-hidden">(current)</span>
                 </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="about">About</a>
                     </li>
-
 
                     <li class="nav-item">
                         <a class="nav-link" href="/">Log Out</a>
@@ -109,52 +108,29 @@
 
         <!-- ======= Works Section ======= -->
         <section class="section site-portfolio">
-            <div class="container mt-2">
+            <div class="container mt-3">
                 <div class="row mb-5 align-items-center">
                     <div class="col-md-12 col-lg-6 mb-4 mb-lg-0" data-aos="fade-up">
-                        <h3>Hello,
-                            <%= name %>
-                        </h3>
+                        <h3>ABOUT</h3>
                         <p class="mb-0">Professional Travaller &amp; Freelance Creative </p>
                     </div>
-                    <div class="col-md-12 col-lg-6 text-start text-lg-end" data-aos="fade-up" data-aos-delay="100">
-                        <div id="filters" class="filters">
-                            <a href="#" data-filter="*" class="active">All</a>
-                            <a href="#"><span class="bi bi-twitter"></span></a>
-                            <a href="#"><span class="bi bi-facebook"></span></a>
-                            <a href="#"><span class="bi bi-instagram"></span></a>
-                            <a href="#"><span class="bi bi-linkedin"></span></a>
-                        </div>
-                    </div>
+
+
                 </div>
             </div>
 
             <!-- Main grid photo view -->
-            <div id="portfolio-grid" class="row no-gutter" data-aos="fade-up" data-aos-delay="200">
+            <div class="container">
+                <div class="row justify-content-md-center">
+                    <div class="mbr-white col-md-10">
 
+                        <p class="mbr-text align-center pb-3 mbr-fonts-style display-7">
+                            Photo sharer is a web base photo sharing platform for a avid traveler who have been travelling round the world for 10 years now. After bringing out time to reminisce on his experience so far, he wnated a photo platform to turn his adventure into a business.
 
-                <%if(picData.length!=0){%>
-                    <% picData.forEach(row =>{ %>
+                        </p>
 
-                        <div class="item photography col-sm-6 col-md-4 col-lg-4 mb-4">
-                            <a href="/picpage/<%= row.id%>" class="item-wrap fancybox">
-                                <div class="work-info">
-                                    <h3>
-                                        <%= row.title %>
-                                    </h3>
-                                    <span>
-                                            <%= row.description %>
-                                        </span>
-                                </div>
-
-
-                                <img class="img-fluid" src="<%= row.img %>">
-                            </a>
-                        </div>
-
-                        <% }) }%>
-
-
+                    </div>
+                </div>
             </div>
             </div>
         </section>

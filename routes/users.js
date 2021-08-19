@@ -6,7 +6,7 @@ const session = require('express-session');
 const flash = require('express-flash');
 const passport = require('passport');
 const { ensureAuthenticated } = require('../config/auth')
-
+const cors = require('cors')
 
 const initializePassport = require('../config/passportConfig')
 
@@ -23,7 +23,7 @@ router.use(flash());
 
 //express.json middlewares
 router.use(express.json());
-
+router.use(cors())
 
 //Get all users
 router.get('/signup', (req, res) => {
@@ -100,7 +100,7 @@ router.post('/signup', async(req, res) => {
                             throw err
                         }
                         console.log(results.row)
-                            //res.json(results.row)
+
                         req.flash('success_msg', 'You are now registered. You can now log in')
                         res.redirect('/users/login')
                     }
@@ -132,28 +132,32 @@ router.post('/signup', async(req, res) => {
 // })
 
 
-router.post('/login', passport.authenticate('local'), async(req, res) => {
+router.post('/login', passport.authenticate('local', {
+        failureRedirect: '/users/login',
+        failureFlash: true
+    }),
+    async(req, res) => {
 
-    const { email } = req.body
+        const { email } = req.body
 
-    let errors = []
-    let user = await pool.query(`SELECT * FROM users WHERE email = $1`, [email]);
-    try {
-        console.log(user.rows[0].role)
-        if (user.rows[0].role === 'user') {
-            return res.redirect('/main')
-        } else if (user.rows[0].role === 'admin') {
+        let errors = []
+        let user = await pool.query(`SELECT * FROM users WHERE email = $1`, [email]);
+        try {
+            console.log(user.rows[0].role)
+            if (user.rows[0].role === 'user') {
+                return res.redirect('/main')
+            } else if (user.rows[0].role === 'admin') {
 
-            return res.render('admin/dash')
-        } else {
-            res.redirect('/users/login', { message })
+                return res.redirect('/admin/dash')
+            } else {
+                res.redirect('/users/login', { message })
+            }
+        } catch (err) {
+            console.log(err)
+
+            errors.push({ err: 'Unathorized' })
         }
-    } catch (err) {
-        console.log(err)
-
-        errors.push({ err: 'Unathorized' })
-    }
-})
+    })
 
 
 

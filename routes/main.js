@@ -7,9 +7,12 @@ const session = require('express-session');
 const flash = require('express-flash');
 const passport = require('passport');
 const { pool } = require('../config/configDB')
+const cors = require('cors')
+
 
 //express.json middlewares
 router.use(express.json());
+router.use(cors())
 
 //Welcome page
 router.get('/', ensureAuthenticated, (req, res) => {
@@ -19,8 +22,8 @@ router.get('/', ensureAuthenticated, (req, res) => {
         if (err) {
             console.log(err.message)
         }
-        console.log(result.rows)
-            //res.json(result.rows)
+        // console.log(result.rows)
+        //res.json(result.rows)
         const picture = result.rows
             //const picId = picture.id
         res.render('main', {
@@ -30,31 +33,6 @@ router.get('/', ensureAuthenticated, (req, res) => {
     });
 });
 
-// single ge
-router.get('/picPage/:id', ensureAuthenticated, (req, res) => {
-    // res.send('checking')
-    const id = req.params.id
-
-    console.log(req.params.id)
-    console.log(id)
-        // check if email is already in the system
-    pool.query(`SELECT * FROM picture WHERE id = $1`, [id], (err, result) => {
-        if (err) {
-            console.log(err.message)
-        }
-        console.log(result.rows)
-            //res.json(result.rows)
-        const picture = result.rows
-        console.log(result.rows[0].title)
-        res.render('picPage', {
-            name: req.user.name,
-            title: result.rows[0].title,
-            description: result.rows[0].description,
-            img: result.rows[0].img
-        })
-    });
-
-});
 
 
 
@@ -67,5 +45,7 @@ router.get('/login', ensureAuthenticated, (req, res) => {
         name: req.user.name
     })
 });
+
+
 
 module.exports = router;

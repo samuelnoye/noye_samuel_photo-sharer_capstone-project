@@ -55,6 +55,7 @@ function checkFileType(file, cb) {
         return cb(null, true);
     } else {
         cb('Error: Images Only!');
+
     }
 }
 
@@ -66,8 +67,21 @@ function checkFileType(file, cb) {
 //admin dashboard
 router.get('/dash', ensureAuthenticated, (req, res) => {
 
+    //fetch all pictures
+    pool.query(`SELECT * FROM picture`, (err, result) => {
+        if (err) {
+            console.log(err.message)
+        }
 
-    res.render('admin/dash')
+
+
+        const picture = result.rows
+            //const picId = picture.id
+        res.render('admin/dash', {
+            name: req.user.name,
+            picData: picture
+        })
+    });
 });
 
 //upload page 
@@ -81,16 +95,14 @@ router.get('/upload', (req, res) => {
 router.post('/upload', upload.single('myImage'), async(req, res) => {
 
 
-
-
-
-
     if (req.file == undefined) {
         res.render('admin/upload', {
             msg: 'Error: No Picture Selected!'
         });
     } else {
         console.log(req.file)
+
+
 
         res.render('admin/upload', {
             msg: 'Picture Uploaded Succesfully with Details!',
@@ -99,25 +111,16 @@ router.post('/upload', upload.single('myImage'), async(req, res) => {
         });
     }
 
-
+    //get values from textfields
     let { title, description } = req.body;
-    console.log({
-        title,
-        description
-    });
 
-
-
+    const up = 0
+    const down = 0
     const imgFile = req.file.path
     let errors = [];
-
-
-
-    //insert into database
-
     pool.query(
-        `INSERT INTO picture (title, description, img)
-                        VALUES($1,$2,$3) RETURNING *`, [title, description, imgFile.replace("public\\img\\", "/img/")], (err, results) => {
+        `INSERT INTO picture (title, description, up, down, img)
+                       VALUES($1,$2,$3,$4,$5) RETURNING *`, [title, description, up, down, imgFile.replace("public\\img\\", "/img/")], (err, results) => {
 
 
             if (err) {
@@ -127,6 +130,13 @@ router.post('/upload', upload.single('myImage'), async(req, res) => {
         }
 
     )
+
+
+
+
+
+    //insert into database
+
 
 
 
@@ -145,9 +155,9 @@ router.get('/users', (req, res) => {
 
         const picture = result.rows
         res.render('admin/users', {
-            userData: picture
-        })
-        res.json(result.rows)
+                userData: picture
+            })
+            // res.json(result.rows)
     });
     // res.render('admin/users')
 });

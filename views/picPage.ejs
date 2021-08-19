@@ -78,14 +78,23 @@
                         <a class="nav-link" href="#"></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="#">Home
+                        <a class="nav-link" href="#"></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/main">Home
                   <span class="visually-hidden">(current)</span>
                 </a>
                     </li>
 
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about">About</a>
+                    </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="/">Log Out</a>
+                        <a class="nav-link" href="/">Log Out<i class="fas fa-sign-out-alt"></i></a>
                     </li>
 
 
@@ -129,16 +138,21 @@
 
                 <div class="card-body w-20">
 
+                    <form action="/picpage/like/<%= id%>" method="PUT">
+                        <button type="submit" class="btn btn-success fa fa-thumbs-up"><a href="/picpage/like/<%= id%>"></a> vote</a></button>
 
-                    <button type="button" class="btn btn-success fa fa-thumbs-up"><a href="#"></a> vote</a></button>
+                    </form>
                     <button type="button" class="btn bg-danger fa fa-thumbs-down ml-auto"><a href="#"></a> vote</a></button>
 
 
-                    <button type="button" class="btn bg-light fa fa-download"><a download="img.jpeg" href="<%= img %>"></a></button>
+                    <button type="button" class="btn bg-light fa fa-download">
+                        <a href="/download?id=<%= img %>"></a></button>
 
                 </div>
 
             </div>
+
+
 
         </section>
 
@@ -146,7 +160,7 @@
     <!-- End #main -->
 
     <!-- ======= Footer ======= -->
-    <footer class="footer mt-4" role="contentinfo">
+    <footer class="footer" role="contentinfo">
         <div class="container">
             <div class="row">
                 <div class="col-sm-6">
@@ -154,8 +168,8 @@
 
                 </div>
 
+
             </div>
-        </div>
     </footer>
 
 

@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Log In</title>
+    <title>Single picture</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -16,105 +16,215 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=https://fonts.googleapis.com/css?family=Inconsolata:400,500,600,700|Raleway:400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
-
+    <!-- Vendor CSS Files -->
+    <link href="vendor/aos/aos.css" rel="stylesheet">
+    <link href="vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
     <!-- Template Main CSS File -->
     <link href="css/style.css" rel="stylesheet">
 
 
+
 </head>
 
 <body>
-    <div class="collapse navbar-collapse custom-navmenu" id="main-navbar">
-        <div class="container py-2 py-md-5">
-            <div class="row align-items-start">
-                <div class="col-md-2">
 
-                    <ul class="custom-menu">
+    <!-- ======= Navbar ======= -->
 
-                        <li class="active"><a href="signup">Sign Up</a></li>
-                        <li><a href="./">Log In</a></li>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">-Photo Sharer.</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+            <div class="collapse navbar-collapse justify-content-end" id="navbarColor01">
+                <ul class="navbar-nav me-auto">
+
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">
+                            <span class="visually-hidden">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">
+                            <span class="visually-hidden">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">
+                            <span class="visually-hidden">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">
+                            <span class="visually-hidden">(current)</span>
+                        </a>
+                    </li>
 
 
-                    </ul>
-                </div>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Home
+                  <span class="visually-hidden">(current)</span>
+                </a>
+                    </li>
+
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Log Out</a>
+                    </li>
+
+
+                </ul>
 
             </div>
-
         </div>
-    </div>
-
+    </nav>
 
     <nav class="navbar navbar-light custom-navbar">
         <div class="container">
-            <a class="navbar-brand" href="#">Photo Sharer.</a>
+            <a class="navbar-brand" href="#"></a>
             <a href="#" class="burger" data-bs-toggle="collapse" data-bs-target="#main-navbar">
                 <span></span>
             </a>
         </div>
     </nav>
-
+    // pictures table
     <main id="main">
+        <section class="section">
 
-        <section class="section pb-5">
-            <div class="container">
+            <div class="card mb-3 h-auto">
+                <h3 class="card-header">
+                    <%= title%>
+                </h3>
+                <div class="card-body">
+
+                    <h6 class="card-subtitle text-muted">
+                        <%= name%>
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <iframe src="<%= img %>" width="100%" height="600" style="border:none;">
+               
+                </div>
+
+                <iframe src="<%= img %>" width="100%" height="600" style="border:none;">
+                </iframe>
+                    <div class="card-body">
+                        <p class="card-text">
+                            <%= description %>
+                        </p>
+                    </div>
+
+                    <div class="card-body w-20">
 
 
-                <div class="row">
-                    <div class="col-md-6 mb-5 mb-md-0" data-aos="fade-up">
-                        <%- include ('partials/messages') %>
+                        <button type="button" class="btn btn-success fa fa-thumbs-up"><a href="#"></a> vote</a></button>
+                        <button type="button" class="btn bg-danger fa fa-thumbs-down ml-auto"><a href="#"></a> vote</a></button>
 
-                            <form action="login" method="post" role="form">
 
-                                <div class="row gy-3">
-
-                                    <div class="col-md-12 form-group">
-                                        <label for="name">Email</label>
-                                        <input type="text" class="form-control" name="email" id="email" required>
-                                    </div>
-                                    <div class="col-md-12 form-group">
-                                        <label for="password">Password</label>
-                                        <input type="password" name="password" class="form-control" id="password" required>
-                                    </div>
-
-                                    <div class="col-md-12 my-3">
-                                        <div class="loading"></div>
-                                        <div class="error-message"></div>
-                                        <div class="sent-message"></div>
-                                    </div>
-
-                                    <div class="col-md-6 mt-0 form-group">
-                                        <input type="submit" class="readmore d-block w-100" value="Log In">
-                                    </div>
-                                    <p>Don't have an acoount? <a href="signup"> Register here</a></p>
-                                </div>
-
-                            </form>
+                        <button type="button" class="btn bg-light fa fa-download">
+                        <a href="/download?id=<%= img %>"></a></button>
 
                     </div>
 
                 </div>
 
-            </div>
-
         </section>
 
     </main>
+
+
+    <div class="container mt-5  col-md-8 form-group">
+        <table class="table table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">TITLE</th>
+                    <th scope="col">DESCRIPTION</th>
+                    <th scope="col">IMG</th>
+                </tr>
+            </thead>
+            <tbody>
+
+
+                <%if(picData.length!=0){%>
+                    <%   var i=1; %>
+                        <%   picData.forEach(data =>{ %>
+
+
+                            <tr class="table-light">
+                                <th scope="row">
+                                    <%=i; %>
+                                </th>
+                                <td>
+                                    <%=data.title %>
+                                </td>
+                                <td>
+                                    <%=data.description %>
+                                </td>
+                                <td>
+                                    <%=data.img %>
+                                </td>
+                            </tr>
+                            <%  i++; }) %>
+                                <% } else{ %>
+                                    <tr>
+                                        <td colspan="7">No Data Found</td>
+                                    </tr>
+                                    <% } %>
+
+
+
+
+
+
+
+            </tbody>
+        </table>
+    </div>
+
     <!-- End #main -->
 
+    <!-- ======= Footer ======= -->
+    <footer class="footer mt-4" role="contentinfo">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <p class="mb-1">&copy; Copyright Noye Samuel. All Rights Reserved</p>
+
+                </div>
+
+            </div>
+        </div>
+    </footer>
 
 
-
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
     <!-- Vendor JS Files -->
-    <script src="vendor/aos/aos.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="vendor/isotope-layout/isotope.pkgd.min.js"></script>
-    <script src="vendor/php-email-form/validate.js"></script>
-    <script src="vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="assets/vendor/aos/aos.js"></script>
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="assets/vendor/php-email-form/validate.js"></script>
+    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
 
     <!-- Template Main JS File -->
-    <script src="js/main.js"></script>
+    <script src="assets/js/main.js"></script>
 
 </body>
 

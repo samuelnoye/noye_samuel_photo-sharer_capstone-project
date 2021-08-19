@@ -8,7 +8,8 @@ const flash = require('express-flash');
 const conflash = require('connect-flash');
 const passport = require('passport');
 const expressLayouts = require('express-ejs-layouts');
-
+const { ensureAuthenticated } = require('./config/auth')
+const cors = require('cors')
 
 //import database
 const {
@@ -22,7 +23,7 @@ require('./config/passportConfig');
 //start express
 const app = express();
 
-
+app.use(cors())
 
 
 //express session
@@ -85,6 +86,66 @@ app.use('/admin', require('./routes/admin'));
 
 
 
+
+
+
+//picture upvote page route
+app.put('/picpage/like/:id', (req, res) => {
+
+    // get id
+    const id = req.params.id
+
+    console.log(req.params.id)
+    console.log(id)
+
+    // fetch pictre likes by the id
+    pool.query(`SELECT like FROM picture WHERE id = $1`, [id], (err, result) => {
+        if (err) {
+            console.log(err.message)
+        }
+        //console.log(result.rows)
+
+        const vote = result.rows[0].like
+        console.log(result.rows[0].like)
+        pool.query(`UPDATE picture SET like = $1 WHERE id = $2`, [vote + 1, id], (err, result) => {
+            if (err) {
+                console.log(err.message)
+            }
+
+            // res.render('picpage', {
+            //     name: req.user.name,
+            //     title: result.rows[0].title,
+            //     description: result.rows[0].description,
+            //     img: result.rows[0].img
+            // })
+        });
+
+    });
+})
+
+//download picture route
+app.get('/download', ensureAuthenticated, (req, res) => {
+    // res.send('checking')
+    const id = req.query.id
+
+    console.log(req.params.id)
+    console.log(id)
+        // check if email is already in the system
+    pool.query(`SELECT * FROM picture WHERE id = $1`, [id], (err, result) => {
+        if (err) {
+            console.log(err.message)
+        }
+        console.log(result.rows)
+            //res.json(result.rows)
+        const picture = result.rows
+        let file = picture.img[0]
+        file = `${__dirname}/${file.url}`
+        console.log(file)
+        res.download(file)
+
+    });
+
+});
 
 
 

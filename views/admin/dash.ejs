@@ -13,8 +13,8 @@
         <div class="container-fluid">
             <a class="navbar-brand" href="#">-Photo Sharer.</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
             <div class="collapse navbar-collapse" id="navbarColor01">
                 <ul class="navbar-nav me-auto">
@@ -59,9 +59,10 @@
             <div class="row">
                 <div class="col">
                     <div class="card bg-secondary mb-3" style="max-width: 20rem;">
-                        <div class="card-header">Header</div>
+                        <div class="card-header">TOTAL PICTURES</div>
                         <div class="card-body">
-                            <h4 class="card-title">Secondary card title</h4>
+                            <h2 class="card-title">
+                                0</h2>
                             <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                         </div>
                     </div>
@@ -69,27 +70,30 @@
                 </div>
                 <div class="col">
                     <div class="card bg-secondary mb-3" style="max-width: 20rem;">
-                        <div class="card-header">Header</div>
+                        <div class="card-header">TOTAL USERS</div>
                         <div class="card-body">
-                            <h4 class="card-title">Secondary card title</h4>
+                            <h2 class="card-title">
+                                0</h2>
                             <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                         </div>
                     </div>
                 </div>
                 <div class="col">
                     <div class="card bg-secondary mb-3" style="max-width: 20rem;">
-                        <div class="card-header">Header</div>
+                        <div class="card-header">UP VOTES</div>
                         <div class="card-body">
-                            <h4 class="card-title">Secondary card title</h4>
+                            <h2 class="card-title">
+                                0</h2>
                             <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                         </div>
                     </div>
                 </div>
                 <div class="col">
                     <div class="card bg-secondary mb-3" style="max-width: 20rem;">
-                        <div class="card-header">Header</div>
+                        <div class="card-header">DOWN VOTES</div>
                         <div class="card-body">
-                            <h4 class="card-title">Secondary card title</h4>
+                            <h2 class="card-title">
+                                0</h2>
                             <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                         </div>
                     </div>
@@ -98,12 +102,67 @@
 
         </div>
 
+        <div class="container mt-5  col-md-10 form-group">
+            <table class="table table-hover">
+                <thead class="table-dark">
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">TITLE</th>
+                        <th scope="col">IMG</th>
+                        <th scope="col">UP VOTE</th>
+                        <th scope="col">DOWN VOTE</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+
+                    <%if(picData.length!=0){%>
+                        <%   var i=1; %>
+                            <%   picData.forEach(data =>{ %>
+
+
+                                <tr class="table-light">
+                                    <th scope="row">
+                                        <%=i; %>
+                                    </th>
+                                    <td>
+                                        <%=data.title %>
+                                    </td>
+
+                                    <td>
+                                        <img class="" style="width: 80px;" src="<%=data.img %>">
+
+                                    </td>
+                                    <td>
+                                        <%=data.up %>
+                                    </td>
+                                    <td>
+                                        <%=data.down %>
+                                    </td>
+                                </tr>
+                                <%  i++; }) %>
+                                    <% } else{ %>
+                                        <tr>
+                                            <td colspan="7">No Data Found</td>
+                                        </tr>
+                                        <% } %>
 
 
 
 
-        <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+
+
+
+                </tbody>
+            </table>
+        </div>
+
+
+
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
 
 </body>
 
