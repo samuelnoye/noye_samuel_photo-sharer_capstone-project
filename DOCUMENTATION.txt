@@ -56,5 +56,4 @@ using a policy (middleware)
 11.Using a good project folder structure
 12. Putting configuration out of logic to a configuration file
 13.Using ajax as much as possible to prevent too many page reload which in turn 
-delivers a better UX to users
-Conclusio
+delivers a better UX to users.
