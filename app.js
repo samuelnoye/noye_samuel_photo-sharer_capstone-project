@@ -10,6 +10,7 @@ const passport = require('passport');
 const expressLayouts = require('express-ejs-layouts');
 const { ensureAuthenticated } = require('./config/auth')
 const cors = require('cors')
+const index = require('./routes/index')
 
 //import database
 const {
@@ -73,7 +74,8 @@ app.use('/vendor', express.static(__dirname + 'public/vendor'));
 
 
 // Index routes
-app.use('/', require('./routes/index'));
+// app.use('/', require('./routes/index'));
+app.use('/', index);
 
 //users routes
 app.use('/users', require('./routes/users'));
@@ -93,8 +95,7 @@ app.post('/picpage/like/:id', (req, res) => {
     // get id
     const id = req.params.id
 
-    console.log(req.params.id)
-    console.log(id)
+
 
     // fetch pictre likes by the id
     pool.query(`SELECT up FROM picture WHERE id = $1`, [id], (err, result) => {
@@ -121,8 +122,8 @@ app.post('/picpage/unlike/:id', (req, res) => {
     // get id
     const id = req.params.id
 
-    console.log(req.params.id)
-    console.log(id)
+
+
 
     // fetch pictre likes by the id
     pool.query(`SELECT down FROM picture WHERE id = $1`, [id], (err, result) => {
@@ -144,7 +145,7 @@ app.post('/picpage/unlike/:id', (req, res) => {
 })
 
 //download picture route
-app.get('/picpage/download/:id', ensureAuthenticated, (req, res) => {
+app.post('/picpage/download/:id', (req, res) => {
     // res.send('checking')
     const id = req.query.id
 
@@ -167,9 +168,9 @@ app.get('/picpage/download/:id', ensureAuthenticated, (req, res) => {
 
 });
 
-
+const port = process.env.PORT || 8000
 
 //start server
-app.listen(8000, () => {
-    console.log('Server is listening on Port 8000')
+app.listen(port, () => {
+    console.log(`Server is listening on Port ${port}`)
 })

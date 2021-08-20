@@ -168,15 +168,13 @@
                                     </li>
                                     <li>-</li>
                                     <li>
-                                        <form action="/picpage/download/<%= id%>" method="POST">
-                                            <button type="button" class="btn bg-light fa fa-download">
-                                                <a href="/picpage/download/<%= id%>"></a></button>
+                                        <form action="/picpage/download/:id" method="POST">
+                                            <button type="submit" class="btn bg-light fa fa-download">
+                                                <a href="/picpage/download/:id"></a></button>
 
                                         </form>
                                     </li>
                                 </ul>
-
-                                <p><a href="#" class="readmore">Visit Website</a></p>
                             </div>
                         </div>
                     </div>
