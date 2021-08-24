@@ -95,7 +95,7 @@ router.post('/signup', async(req, res) => {
                 //insert into database
                 pool.query(
                     `INSERT INTO users (name, email, password, role)
-                    VALUES($1,$2,$3,$4) RETURNING id, password`, [name, email, hashPassword, 'admin'], (err, results) => {
+                    VALUES($1,$2,$3,$4) RETURNING id, password`, [name, email, hashPassword, 'user'], (err, results) => {
                         if (err) {
                             throw err
                         }
@@ -148,7 +148,7 @@ router.post('/login', passport.authenticate('local', {
                 return res.redirect('/main')
             } else if (user.rows[0].role === 'admin') {
 
-                return res.redirect('/admin/dash')
+                return res.redirect('/indexAdmin')
             } else {
                 res.redirect('/users/login', { message })
             }

@@ -54,7 +54,7 @@ app.use((req, res, next) => {
 app.search(express.json());
 
 //bodyparser
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 
 
 // view engine setup

@@ -73,23 +73,23 @@ router.get('/dash', ensureAuthenticated, (req, res) => {
             console.log(err.message)
         };
 
+        const picture = result.rows
 
         //getting total pictures
-        const picture = result.rows
-        pool.query(`SELECT * FROM picture ORDER BY id DESC LIMIT 1`, (err, result) => {
+        pool.query(`SELECT count(*) FROM picture`, (err, result) => {
             if (err) {
                 console.log(err.message)
             }
 
-            const pictureCount = result.rows[0].id
+            const pictureCount = result.rows[0].count
 
 
             //getting total users
-            pool.query(`SELECT * FROM users ORDER BY id DESC LIMIT 1`, (err, result) => {
+            pool.query(`SELECT count(*) FROM users`, (err, result) => {
                 if (err) {
                     console.log(err.message)
                 }
-                const usersCount = result.rows[0].id
+                const usersCount = result.rows[0].count
 
                 //getting total up votes
                 pool.query(`SELECT SUM(up) FROM picture;`, (err, result) => {

@@ -13,7 +13,7 @@ const { route } = require('./users');
 initializePassport(passport)
 
 // middlewares
-router.use(express.urlencoded({ extended: false }));
+router.use(express.urlencoded({ extended: true }));
 
 router.use(express.json());
 
@@ -23,6 +23,11 @@ router.use(express.json());
 //index page
 router.get('/', (req, res) => {
     res.render('index')
+});
+
+//admin Index page
+router.get('/indexadmin', (req, res) => {
+    res.render('indexAdmin', { name: req.user.name, })
 });
 
 //about page
