@@ -87,6 +87,31 @@ app.use('/main', require('./routes/main'));
 app.use('/admin', require('./routes/admin'));
 
 
+//single picture page route
+app.get('/picpage/:id', ensureAuthenticated, async(req, res) => {
+
+    // get id
+    const id = req.params.id
+
+
+    // fetch pic by the id
+    const picture = await pool.query(`SELECT * FROM picture WHERE id = $1`, [id], (err, result) => {
+        if (err) {
+            console.log(err.message)
+        }
+
+        //render picpage with details
+
+        res.render('picpage', {
+            name: req.user.name,
+            id: result.rows[0].id,
+            title: result.rows[0].title,
+            description: result.rows[0].description,
+            img: result.rows[0].img
+        })
+    });
+
+});
 
 
 //picture upvote route
