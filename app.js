@@ -102,7 +102,7 @@ app.get('/picpage/:id', ensureAuthenticated, async(req, res) => {
 
         //render picpage with details
 
-        res.render('picpage', {
+        res.render('picPage', {
             name: req.user.name,
             id: result.rows[0].id,
             title: result.rows[0].title,
