@@ -40,7 +40,7 @@ router.get('/about', ensureAuthenticated, (req, res) => {
 });
 
 //single picture page route
-app.get('/picpage/:id', ensureAuthenticated, async(req, res) => {
+router.get('/picpage/:id', ensureAuthenticated, async(req, res) => {
 
     // get id
     const id = req.params.id
