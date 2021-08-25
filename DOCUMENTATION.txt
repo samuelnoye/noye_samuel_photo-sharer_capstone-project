@@ -36,24 +36,8 @@ Admin
 Stack
  1. Both Multi page & API back-end application
  2. EJS
-  3. Node.js / Express Backend
-  4. Postgre SQL
-  5. Es5&es6 Client side JavaScript
+ 3. Node.js / Express Backend
+ 4. Postgre SQL
+ 5. Es5&es6 Client side JavaScript
  6.  HTML 5 & CSS 3
 
-Important Score Metrics
-1. For security sake, ensuring only file with limited mine-types can be uploaded 
-using a policy (middleware)
-2. Using the proper GIT commit messages
-3. Validating http parameters
-4. Defensive Coding
-5. Putting rendered html in view folder, rather than hardcoding it in controller
-6. Proper Documentation
-7. Using express mini-application as much as possible
-8. Separating logic into separate middleware, avoid putting too much logic together
-9. Good UI / UX
-10. Restful Practices
-11.Using a good project folder structure
-12. Putting configuration out of logic to a configuration file
-13.Using ajax as much as possible to prevent too many page reload which in turn 
-delivers a better UX to users.
