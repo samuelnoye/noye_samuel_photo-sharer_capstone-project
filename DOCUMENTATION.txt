@@ -40,8 +40,3 @@ Stack
  4. Postgre SQL
  5. Es5&es6 Client side JavaScript
  6.  HTML 5 & CSS 3
-
-<<<<<<< HEAD
-
-=======
->>>>>>> b780afc8a55e9c5a9b6f5c3546c1cd49fed4b12f
