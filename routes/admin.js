@@ -27,7 +27,7 @@ router.use(flash());
 
 // Set The Storage Engine
 const storage = multer.diskStorage({
-    destination: '/img/',
+    destination: './public/img/',
     filename: function(req, file, cb) {
         cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
     }
