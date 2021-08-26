@@ -160,7 +160,7 @@ router.post('/upload', upload.single('myImage'), async(req, res) => {
     let errors = [];
     pool.query(
         `INSERT INTO picture (title, description, up, down, img)
-                       VALUES($1,$2,$3,$4,$5) RETURNING *`, [title, description, up, down, imgFile.replace("public\\img\\", "/img/")], (err, results) => {
+                       VALUES($1,$2,$3,$4,$5) RETURNING *`, [title, description, up, down, imgFile.replace("public\\img\\", "//img/")], (err, results) => {
 
 
             if (err) {
