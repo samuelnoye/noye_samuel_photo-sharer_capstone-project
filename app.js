@@ -74,7 +74,7 @@ app.use('/vendor', express.static(__dirname + 'public/vendor'));
 
 
 // Index routes
- app.use('/', require('./routes/index'));
+// app.use('/', require('./routes/index'));
 app.use('/', index);
 
 //users routes
