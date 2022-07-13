@@ -63,11 +63,11 @@ app.set('view engine', 'ejs');
 
 
 //static files
-app.use(express.static('public'));
-app.use('/css', express.static(__dirname + 'public/css'));
-app.use('/js', express.static(__dirname + 'public/js'));
-app.use('/img', express.static(__dirname + 'public/img'));
-app.use('/vendor', express.static(__dirname + 'public/vendor'));
+// app.use(express.static('public'));
+// app.use('/css', express.static(__dirname + 'public/css'));
+// app.use('/js', express.static(__dirname + 'public/js'));
+// app.use('/img', express.static(__dirname + 'public/img'));
+// app.use('/vendor', express.static(__dirname + 'public/vendor'));
 
 
 
