@@ -58,7 +58,7 @@ app.use(express.urlencoded({ extended: true }));
 
 
 // view engine setup
-app.use(expressLayouts);
+// app.use(expressLayouts);
 app.set('view engine', 'ejs');
 
 
