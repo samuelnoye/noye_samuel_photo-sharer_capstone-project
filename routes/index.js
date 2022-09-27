@@ -34,7 +34,7 @@ router.get('/indexadmin', (req, res) => {
 router.get('/about', ensureAuthenticated, (req, res) => {
 
 
-  //  res.render('about', {
+    res.render('about', {
         name: req.user.name
     })
 });
