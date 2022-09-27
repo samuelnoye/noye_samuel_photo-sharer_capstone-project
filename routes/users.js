@@ -16,7 +16,7 @@ initializePassport(passport)
 router.use(express.urlencoded({ extended: false }));
 
 
-router.use(passport.initialize());
+//router.use(passport.initialize());
 router.use(passport.session())
 
 router.use(flash());
