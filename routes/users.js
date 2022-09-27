@@ -4,9 +4,9 @@ const router = express.Router();
 const { pool } = require('../config/configDB')
 const session = require('express-session');
 const flash = require('express-flash');
-const passport = require('passport');
-const { ensureAuthenticated } = require('../config/auth')
-const cors = require('cors')
+// const passport = require('passport');
+// const { ensureAuthenticated } = require('../config/auth')
+// const cors = require('cors')
 
 const initializePassport = require('../config/passportConfig')
 
