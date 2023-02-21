@@ -15,7 +15,7 @@ SIGN
 LOGIN
 The system has two users. During the login authentication the system routes the user basic on thier roles.
   1. USERS are directed to the main page(front-end).
-  2. ADMINISTRATORS are directed to the admin page(Dash). 
+  2. ADMINISTRATORS are directed to the admin page(Dashboard). 
   3. Admins also can have acces to the main page thorough the back-end page.
 
 
