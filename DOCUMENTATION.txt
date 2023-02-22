@@ -40,3 +40,10 @@ Stack
  4. Postgre SQL
  5. Es5&es6 Client side JavaScript
  6.  HTML 5 & CSS 3
+ 
+ extension UIScreen{
+    static let screenWidth = UIScreen.main.bounds.size.width
+    static let screenHeight = UIScreen.main.bounds.size.height
+    static let screenSize = UIScreen.main.bounds.size
+}
+
