@@ -36,7 +36,7 @@ Admin
 Stack
  1. Both Multi page & API back-end application
  2. EJS
-  3. Node.js / Express Backend
+ 3. Node.js / Express Backend
   4. Postgre SQL
   5. Es5&es6 Client side JavaScript
  6.  HTML 5 & CSS 3
