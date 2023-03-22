@@ -6,7 +6,9 @@ years now. After bringing out time to reminisce on his experience so far, he wna
 
 SIGN
 1.To signup you must provide your :
-
+  -Name
+  -Email
+  -Password 
 
 
 
